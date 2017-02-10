@@ -1,0 +1,27 @@
+
+{% extends 'admin-panel.html' %}
+<!--  {% load staticfiles %} 
+ -->     
+
+ {% block content %}
+ <a href="post/new" class="btn btn-default">Add Post</a>
+
+    {% for p in post %}
+<div class ="row">
+      <div class="col-md-4">
+<!--           <div style="background: white;width:20%;height:20%;text-align: center;">
+ -->    
+
+
+
+        <h2>{{p.title}}</h2>
+        <a href="{{p.id}}/post_details"><img height="100px" width="300px" src="../../{{p.image}}"></a>
+        <br>
+        <a href="/post/{{p.id}}/edit">Edit</a>
+        <a href="{{p.id}}/delete">delete</a>
+			<h5>{{p.category}}</h5>
+
+   
+      </div>
+    {% endfor %}
+{% endblock %}

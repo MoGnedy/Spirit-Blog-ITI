@@ -1,0 +1,72 @@
+
+{% extends 'base.html' %}
+
+
+ {% block homepage %}
+ <div class="row">
+  <div class="col-md-6">
+    <div class="container">
+    {% for p in post %}
+
+        <h1 style="text-align:center">{{p.title}}</h1>
+        <img src="/{{p.image}}">
+        <div class="container" >
+        <table class="container table">
+        <tr >
+          <td><b>Date:</b></td>
+         <td>{{p.pub_date}}</td>
+        </tr>
+        <tr>
+          <td> <b>Content:</b></td>
+          <td>{{p.content}}</td>
+        </tr>
+        <tr>          
+          <td><b>Category:</b></td>
+           <td>{{p.category}}</td>
+        </tr>
+        <tr>         
+           <td><b>User:</b></td>
+          <td>{{p.user}}</td>
+
+        </tr>
+        
+      </table>
+    {% endfor %}
+     <div style="display:inline-block">
+   {% for comment in comment %}
+      <p>{{comment.pub_date}}</p>
+      <p>{{comment.comment_text}}</p>
+      <p>{{comment.user}}</p>
+        {% for reply in replies %}
+        {% if reply.comment_id == comment.id %}
+            {% if reply.replay_text  %}
+            <p>{{ reply.pub_date }}</p>
+            <p>{{ reply.replay_text }}</p>
+            {% else %}
+        <a href="/reply/{{ reply.id }}" role="button"> Add reply</a>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    {% endfor %} 
+    </div>
+    <div >
+            
+                  <form method='POST'>{% csrf_token %}
+
+                  {{ comment_form.as_p  }}
+
+
+                  <button class ="button" type="submit"  >Comment</button>   
+
+       <!--  </form> -->
+  </form>
+  </div>
+  </div>
+
+ </div>
+
+    
+
+ {% endblock %}
+
+

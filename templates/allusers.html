@@ -1,0 +1,81 @@
+
+
+
+{% extends 'admin-panel.html' %}
+<!--  {% load staticfiles %} 
+ -->     
+
+ {% block content %} 
+
+
+    <meta charset="utf-8">
+<!--     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ -->    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Django-Project-Blog</title>
+
+    <!-- Bootstrap core CSS -->
+<!--     <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+ -->
+    <!-- Additional fonts for this theme -->
+    <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this theme -->
+<!--     <link href="{% static 'css/agency.min.css' %}" rel="stylesheet">
+ -->
+<!--       <div class="col-md-10">
+ --><div class ="row">
+      <div class="col-md-8">
+
+<table  class="table" >
+<tr> <div class="container"><a href="/createuser/"><button class="btn-lg btn-primary">Add User</button></a></div></tr>
+     <tr class="text-center">
+        <th>UserID</th>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>SuperUser</th>
+        <th>Active</th>
+      <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+ 
+
+    
+         {% for user in allusers %}
+    {% if user.is_superuser %}
+    <tr style="background-color:red;color:white;font-weight:bold;">
+{% else %}
+<tr >
+    {% endif %}
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+    <td>
+        {% if user.is_superuser %}
+        <p class="glyphicon glyphicon-ok" style="color:green"></p>
+    {% else %}
+    <p class="glyphicon glyphicon-remove" style="color:red"></p>
+    {% endif %}</td>
+    <td>
+        {% if user.is_active %}
+        <p class="glyphicon glyphicon-ok" style="color:green"></p>
+    {% else %}
+    <p class="glyphicon glyphicon-remove" style="color:red"></p>
+    {% endif %}</td>
+        <td><a href="/updateuser/{{ user.id }}"> <button class="btn btn-sm btn-warning">Edit</button> </a></td>
+
+    </td>
+        <td><a href="/deleteuser/{{ user.id }}"> <button class="btn btn-sm btn-danger">Delete</button> </a></td>
+    </tr>
+    {% endfor %}
+    
+
+
+</table>
+
+{% endblock %}

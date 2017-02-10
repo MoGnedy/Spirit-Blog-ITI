@@ -1,0 +1,14 @@
+{% extends 'admin-panel.html' %}
+<!--  {% load staticfiles %} 
+ -->     
+
+ {% block content %}
+ <div class="container">
+<form method='POST'>{% csrf_token %}
+
+{{ forbidden_words_form.as_p  }}
+
+
+<button type="submit">Save</button>
+</form>
+{% endblock %}

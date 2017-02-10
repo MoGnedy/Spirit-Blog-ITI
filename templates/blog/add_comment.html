@@ -1,0 +1,30 @@
+<body style="background: gray">
+    {% for p in post %}
+    <div style="background: white;;text-align: center;">
+
+        <h2>{{p.title}}</h2>
+        <img src="/{{p.image}}">
+        <p>{{p.pub_date}}</p>
+        <p>{{p.content}}</p>
+   		  <p>{{p.category}}</p>
+   		  <p>{{p.user}}</p>
+   		<a href="/post/{{p.id}}/comment">Add Comment</a>
+      
+    {% endfor %}
+    {% for comment in comment %}
+      <p>{{comment.pub_date}}</p>
+      <p>{{comment.comment_text}}</p>
+      <p>{{comment.user}}</p>
+    {% endfor %}
+    </div>
+</body>
+
+
+
+<form method='POST'>{% csrf_token %}
+
+{{ comment_form.as_p  }}
+
+
+<button type="submit">Save</button>
+</form>

@@ -1,0 +1,38 @@
+
+{% extends 'admin-panel.html' %}
+   
+ {% block content %}
+
+{% load app_filters %}
+ <a href="new" class="btn btn-default">Add category</a>
+<div class="container">
+<div class ="row">
+<div class="col-md-8">
+<table class="table">
+  <thead>
+    <th>Category</th>
+    <th>Status</th>
+    <th>Subscribe</th>
+  </thead>
+        {% for cat in categories %}
+            <tr>
+                {% if user.is_authenticated %}
+                    <td><a href="{{cat.id}}/category_details"> {{ cat.categoryName }} </a></td>
+                    <td>
+                    <a href="/category/{{cat.id}}/edit">Edit</a>
+                    <a href="category/{{cat.id}}/delete">delete</a>
+                    {% if subscribed|lookup:cat.id == True %}
+                    
+                        <td><a href="/category/{{cat.id}}/unsubscribe" style="margin-left: 30px;">Unsubscribe</a></td>
+                    {% else %}
+                        <td><a style="margin-left: 30px;" href="/category/{{cat.id}}/subscribe">Subscribe</a></td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+
+        {% endfor %}
+</table>
+</div>
+</div>
+</div>
+ {% endblock %}

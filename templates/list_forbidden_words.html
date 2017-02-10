@@ -1,0 +1,30 @@
+
+{% extends 'admin-panel.html' %}
+   
+ {% block content %}
+
+<a href="/new_forbidden_word" class="btn btn-default">Add forbidden word</a>
+<div class="container">
+<div class ="row">
+<div class="col-md-8">
+<table class="table">
+
+<th>name</th><th colspan='4'>actions</th>
+
+{%   for word in all_forbidden_words %}
+<tr>
+
+<td> {{ word.forbiddenWord }} </td>
+<td> <a href="/{{word.id}}/delete_forbidden_word"> delete </a>  </td>
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

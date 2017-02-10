@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+ <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Register</h3>
+                    </div>
+                    <div class="panel-body">
+<form method="post" action=".">
+  {% csrf_token %}
+  <p class="bs-component">
+<table>
+    <th>
+        <td>
+  {{ form }}
+   </td>
+    </th>
+
+</table>
+</p>
+<p class="bs-component">
+  <input type="submit" value="{% trans 'Submit' %}" />
+  </p>
+</form>
+                      </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
