@@ -1,3 +1,6 @@
+{% extends 'admin-panel.html' %}
+ {% block content %}
+<div class="container">
 <form method='POST' enctype="multipart/form-data">{% csrf_token %}
 
 {{ p_form.as_p  }}
@@ -5,3 +8,5 @@
 
 <button type="submit">Save</button>
 </form>
+    </div>
+{% endblock %}

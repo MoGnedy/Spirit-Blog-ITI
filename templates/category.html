@@ -11,21 +11,21 @@
 <table class="table">
   <thead>
     <th>Category</th>
-    <th>Status</th>
+    <th>Action</th>
     <th>Subscribe</th>
   </thead>
         {% for cat in categories %}
             <tr>
                 {% if user.is_authenticated %}
-                    <td><a href="{{cat.id}}/category_details"> {{ cat.categoryName }} </a></td>
+                    <td><a href="{{cat.id}}/category_details"> <button class="btn btn-sm btn-primary">{{ cat.categoryName }}</button>  </a></td>
                     <td>
-                    <a href="/category/{{cat.id}}/edit">Edit</a>
-                    <a href="category/{{cat.id}}/delete">delete</a>
+                        <a href="/category/{{cat.id}}/edit"><button class="btn btn-sm btn-warning">Edit</button></a>
+                        <a href="category/{{cat.id}}/delete"><button class="btn btn-sm btn-danger">delete</button></a>
                     {% if subscribed|lookup:cat.id == True %}
                     
-                        <td><a href="/category/{{cat.id}}/unsubscribe" style="margin-left: 30px;">Unsubscribe</a></td>
+                <td><a href="/category/{{cat.id}}/unsubscribe" style="margin-left: 30px;"><button class="btn btn-sm btn-success">Unsubscribe</button></a></td>
                     {% else %}
-                        <td><a style="margin-left: 30px;" href="/category/{{cat.id}}/subscribe">Subscribe</a></td>
+                <td><a style="margin-left: 30px;" href="/category/{{cat.id}}/subscribe"><button class="btn btn-sm btn-success">Subscribe</button></a></td>
                     {% endif %}
                 {% endif %}
             </tr>
